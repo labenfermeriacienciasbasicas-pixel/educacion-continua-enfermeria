@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Educación Continua – Carrera de Enfermería | FCM – UCE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-oscuro: #0a2342;
+    --azul-medio: #1a4a7a;
+    --azul-claro: #2d7dd2;
+    --celeste: #e8f4fd;
+    --verde-salud: #1a7a5e;
+    --verde-claro: #e6f5ef;
+    --dorado: #c9861a;
+    --dorado-claro: #fdf3e0;
+    --blanco: #ffffff;
+    --gris-claro: #f5f6f8;
+    --gris-texto: #4a5568;
+    --gris-linea: #e2e8f0;
+    --texto-principal: #1a202c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--texto-principal);
+    background: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+    background: rgba(10, 35, 66, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2rem;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .nav-logo-icon {
+    width: 40px; height: 40px;
+    background: var(--verde-salud);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 22px; height: 22px; fill: white; }
+  .nav-logo-text { color: white; }
+  .nav-logo-text span { display: block; }
+  .nav-logo-text .inst { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; text-transform: uppercase; }
+  .nav-logo-text .prog { font-size: 14px; font-weight: 600; color: white; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); font-size: 13px; text-decoration: none;
+    font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: white; }
+  .nav-cta {
+    background: var(--verde-salud); color: white;
+    border: none; padding: 0.5rem 1.2rem;
+    border-radius: 6px; font-size: 13px; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: #14614a; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--azul-oscuro);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 2rem 80px;
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(45,125,210,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(45,125,210,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .hero-circle-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(45,125,210,0.15) 0%, transparent 70%);
+    right: -150px; top: -100px;
+  }
+  .hero-circle-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(26,122,94,0.12) 0%, transparent 70%);
+    left: -100px; bottom: 0;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 420px; gap: 4rem; align-items: center;
+    position: relative; z-index: 2;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,122,94,0.2); border: 1px solid rgba(26,122,94,0.4);
+    color: #5dd4af; padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: #5dd4af; border-radius: 50%;
+    animation: pulso 2s infinite;
+  }
+  @keyframes pulso {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    color: white; line-height: 1.15; margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero-title .accent { color: #5dd4af; }
+  .hero-sub {
+    font-size: 1.05rem; color: rgba(255,255,255,0.65);
+    line-height: 1.75; max-width: 540px; margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--verde-salud); color: white;
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.2s;
+    border: none; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #14614a; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.8);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.25); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
+  /* Hero stats card */
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 2rem;
+    backdrop-filter: blur(10px);
+  }
+  .hero-card-title {
+    color: rgba(255,255,255,0.5); font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 700; color: white;
+    line-height: 1;
+  }
+  .stat-num .stat-accent { color: #5dd4af; font-size: 1.2rem; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; line-height: 1.4; }
+  .hero-card-divider {
+    border: none; border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 1.5rem 0;
+  }
+  .caces-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(201,134,26,0.15); border: 1px solid rgba(201,134,26,0.3);
+    border-radius: 10px; padding: 0.75rem 1rem;
+  }
+  .caces-icon {
+    width: 32px; height: 32px; background: rgba(201,134,26,0.2);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .caces-icon svg { width: 18px; height: 18px; fill: #c9861a; }
+  .caces-text { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+  .caces-text strong { color: #e6a835; display: block; font-size: 13px; }
+
+  /* ── SECCIÓN PILARES CACES ── */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--celeste); color: var(--azul-claro);
+    padding: 5px 14px; border-radius: 100px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--azul-oscuro); line-height: 1.2;
+    margin-bottom: 1rem; font-weight: 700;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--gris-texto);
+    line-height: 1.75; max-width: 640px; font-weight: 300;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+
+  /* Pillars */
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .pillar-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-linea);
+    border-radius: 16px; padding: 2rem 1.75rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(10,35,66,0.1);
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .pillar-card.curriculo::before { background: var(--azul-claro); }
+  .pillar-card.docencia::before { background: var(--verde-salud); }
+  .pillar-card.soporte::before { background: var(--dorado); }
+  .pillar-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .pillar-icon svg { width: 26px; height: 26px; }
+  .pillar-icon.azul { background: var(--celeste); }
+  .pillar-icon.azul svg { fill: var(--azul-claro); }
+  .pillar-icon.verde { background: var(--verde-claro); }
+  .pillar-icon.verde svg { fill: var(--verde-salud); }
+  .pillar-icon.dorado { background: var(--dorado-claro); }
+  .pillar-icon.dorado svg { fill: var(--dorado); }
+  .pillar-name {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .pillar-name.azul { color: var(--azul-claro); }
+  .pillar-name.verde { color: var(--verde-salud); }
+  .pillar-name.dorado { color: var(--dorado); }
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--azul-oscuro); margin-bottom: 0.75rem;
+  }
+  .pillar-desc {
+    font-size: 0.9rem; color: var(--gris-texto);
+    line-height: 1.7; margin-bottom: 1.5rem; font-weight: 300;
+  }
+  .pillar-count {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--gris-texto);
+  }
+  .pillar-count span {
+    background: var(--gris-claro); padding: 3px 10px;
+    border-radius: 100px; font-weight: 500;
+  }
+
+  /* ── MÓDULOS DE CAPACITACIÓN ── */
+  .modulos-bg { background: var(--gris-claro); }
+  .modulos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+
+  .modulo-card {
+    background: var(--blanco);
+    border: 1px solid var(--gris-linea);
+    border-radius: 14px; padding: 1.75rem;
+    display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem;
+    align-items: start; transition: box-shadow 0.25s;
+  }
+  .modulo-card:hover { box-shadow: 0 8px 24px rgba(10,35,66,0.08); }
+  .modulo-num {
+    width: 56px; height: 56px; border-radius: 12px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    flex-shrink: 0;
+  }
+  .modulo-num .num-big { font-size: 1.4rem; font-weight: 700; line-height: 1; }
+  .modulo-num .num-label { font-size: 9px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .modulo-num.m1 { background: var(--celeste); color: var(--azul-claro); }
+  .modulo-num.m2 { background: var(--verde-claro); color: var(--verde-salud); }
+  .modulo-num.m3 { background: #f0e6fa; color: #7c3aed; }
+  .modulo-num.m4 { background: var(--dorado-claro); color: var(--dorado); }
+  .modulo-num.m5 { background: #fde8e8; color: #c0392b; }
+  .modulo-num.m6 { background: #e8f5e8; color: #27ae60; }
+  .modulo-num.m7 { background: #e8f0fd; color: #1a4a7a; }
+  .modulo-num.m8 { background: #fef5e7; color: #d35400; }
+  .modulo-body {}
+  .modulo-pilar {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.07em;
+    text-transform: uppercase; margin-bottom: 4px; color: var(--gris-texto);
+  }
+  .modulo-nombre {
+    font-size: 1rem; font-weight: 600;
+    color: var(--azul-oscuro); margin-bottom: 0.5rem; line-height: 1.35;
+  }
+  .modulo-desc {
+    font-size: 0.855rem; color: var(--gris-texto);
+    line-height: 1.65; margin-bottom: 1rem; font-weight: 300;
+  }
+  .modulo-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px; padding: 3px 10px; border-radius: 100px;
+    font-weight: 500; border: 1px solid;
+  }
+  .tag-azul { color: var(--azul-claro); background: var(--celeste); border-color: #bdd6f0; }
+  .tag-verde { color: var(--verde-salud); background: var(--verde-claro); border-color: #b3ddc9; }
+  .tag-morado { color: #7c3aed; background: #f0e6fa; border-color: #d4b8f5; }
+  .tag-dorado { color: var(--dorado); background: var(--dorado-claro); border-color: #efd5a0; }
+
+  /* ── METODOLOGÍA ── */
+  .metodologia-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .metodologia-steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid; grid-template-columns: 48px 1fr; gap: 1.25rem;
+    align-items: start; position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: ''; position: absolute;
+    left: 23px; top: 48px; bottom: -20px; width: 2px;
+    background: var(--gris-linea);
+  }
+  .step-left { display: flex; flex-direction: column; align-items: center; }
+  .step-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 2px solid var(--azul-claro);
+    background: var(--blanco);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--azul-claro);
+    position: relative; z-index: 1;
+    transition: all 0.2s; flex-shrink: 0;
+  }
+  .step:hover .step-circle {
+    background: var(--azul-claro); color: white;
+  }
+  .step-content { padding-bottom: 2.5rem; }
+  .step-title {
+    font-size: 1rem; font-weight: 600;
+    color: var(--azul-oscuro); margin-bottom: 0.4rem;
+  }
+  .step-desc {
+    font-size: 0.875rem; color: var(--gris-texto);
+    line-height: 1.65; font-weight: 300;
+  }
+
+  .metodologia-visual {
+    background: var(--azul-oscuro);
+    border-radius: 20px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .metodologia-visual::before {
+    content: '';
+    position: absolute; right: -80px; top: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(45,125,210,0.2), transparent 60%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .mv-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: white; margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .mv-items { display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; }
+  .mv-item {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 0.85rem 1rem;
+  }
+  .mv-icon {
+    width: 34px; height: 34px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .mv-icon svg { width: 18px; height: 18px; fill: white; }
+  .mv-icon.verde { background: var(--verde-salud); }
+  .mv-icon.azul { background: var(--azul-claro); }
+  .mv-icon.dorado { background: var(--dorado); }
+  .mv-icon.morado { background: #7c3aed; }
+  .mv-text { font-size: 0.875rem; color: rgba(255,255,255,0.8); font-weight: 300; }
+  .mv-text strong { color: white; font-weight: 500; }
+
+  /* ── CACES INFO ── */
+  .caces-section { background: var(--azul-oscuro); }
+  .caces-inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .caces-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .caces-left .section-tag { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+  .caces-left .section-title { color: white; }
+  .caces-left .section-sub { color: rgba(255,255,255,0.6); }
+  .criterios-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .criterio-item {
+    display: flex; gap: 1rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.25rem;
+  }
+  .criterio-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #5dd4af; flex-shrink: 0; margin-top: 4px;
+  }
+  .criterio-text { font-size: 0.875rem; color: rgba(255,255,255,0.7); line-height: 1.6; font-weight: 300; }
+  .criterio-text strong { color: white; font-weight: 500; display: block; margin-bottom: 3px; }
+  .caces-right {}
+  .indicadores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .indicador-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 1.25rem;
+  }
+  .ind-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(45,125,210,0.2); border: 1px solid rgba(45,125,210,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+  .ind-icon svg { width: 20px; height: 20px; fill: #7ab8f0; }
+  .ind-name { font-size: 0.875rem; font-weight: 600; color: white; margin-bottom: 4px; }
+  .ind-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; font-weight: 300; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #06172a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 2rem 2rem;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 2.5rem;
+  }
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: white; margin-bottom: 0.5rem;
+  }
+  .footer-brand-desc { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7; font-weight: 300; max-width: 300px; }
+  .footer-col-title { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.85); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(201,134,26,0.12); border: 1px solid rgba(201,134,26,0.25);
+    border-radius: 100px; padding: 4px 14px;
+    font-size: 11px; font-weight: 600; color: #e6a835;
+    letter-spacing: 0.04em;
+  }
+  .footer-badge::before { content: '✓'; margin-right: 2px; }
+
+  /* ── ANIMACIONES DE ENTRADA ── */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  @media (max-width: 900px) {
+    .hero-inner, .metodologia-grid, .caces-grid, .footer-top {
+      grid-template-columns: 1fr;
+    }
+    .pillars-grid, .modulos-grid { grid-template-columns: 1fr; }
+    .indicadores-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-card { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 2a8 8 0 100 16A8 8 0 0012 4zm-1 3h2v4h4v2h-4v4h-2v-4H7v-2h4V7z"/>
+        </svg>
+      </div>
+      <div class="nav-logo-text">
+        <span class="inst">FCM – Universidad Central del Ecuador</span>
+        <span class="prog">Educación Continua · Enfermería</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#pilares">Pilares CACES</a></li>
+      <li><a href="#modulos">Módulos</a></li>
+      <li><a href="#metodologia">Metodología</a></li>
+      <li><a href="#caces">Marco CACES</a></li>
+    </ul>
+    <a href="#modulos" class="nav-cta">Ver programa</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-circle hero-circle-1"></div>
+  <div class="hero-circle hero-circle-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge fade-up">Programa Docente 2025</div>
+      <h1 class="hero-title fade-up delay-1">
+        Educación Continua<br>para Docentes de<br><span class="accent">Enfermería</span>
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        Programa de capacitación alineado a los lineamientos del CACES, dirigido a los docentes de la Carrera de Enfermería de la Facultad de Ciencias Médicas de la Universidad Central del Ecuador. Fortalecemos competencias en currículo, docencia y gestión académica.
+      </p>
+      <div class="hero-ctas fade-up delay-3">
+        <a href="#modulos" class="btn-primary">
+          <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+          Explorar módulos
+        </a>
+        <a href="#metodologia" class="btn-outline">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Ver metodología
+        </a>
+      </div>
+    </div>
+    <div class="hero-card fade-up delay-4">
+      <p class="hero-card-title">Estadísticas del programa</p>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">8<span class="stat-accent"> módulos</span></div>
+          <div class="stat-label">de capacitación especializada</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3<span class="stat-accent"> pilares</span></div>
+          <div class="stat-label">alineados al modelo CACES</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100<span class="stat-accent">%</span></div>
+          <div class="stat-label">en línea y presencial</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">FCM<span class="stat-accent"> UCE</span></div>
+          <div class="stat-label">Facultad de Ciencias Médicas</div>
+        </div>
+      </div>
+      <hr class="hero-card-divider">
+      <div class="caces-badge">
+        <div class="caces-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.08 8.75-7 9.93C8.08 19.75 5 15.52 5 11V6.3l7-3.12zM11 7v6h2V7h-2zm0 8v2h2v-2h-2z"/></svg>
+        </div>
+        <div class="caces-text">
+          <strong>Lineamientos CACES</strong>
+          Currículo · Docencia · Funciones estratégicas
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES CACES -->
+<section class="section" id="pilares">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Estructura del programa</div>
+      <h2 class="section-title">Tres pilares alineados<br>al modelo CACES</h2>
+      <p class="section-sub">El programa integra los criterios de evaluación y acreditación del CACES para asegurar una formación docente de calidad, pertinente y sostenible.</p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card curriculo">
+        <div class="pillar-icon azul">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <div class="pillar-name azul">Criterio 1</div>
+        <div class="pillar-title">Currículo</div>
+        <div class="pillar-desc">Capacitación en los componentes curriculares que guían la formación de enfermería: gestión del syllabus, prácticas formativas y uso pedagógico de tecnologías.</div>
+        <div class="pillar-count"><span>3 módulos</span> · Syllabus · Prácticas · TAC</div>
+      </div>
+      <div class="pillar-card docencia">
+        <div class="pillar-icon verde">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-1.3 5-3S14.7 6 12 6s-5 1.3-5 3 2.3 3 5 3zm0 2c-3.3 0-10 1.7-10 5v2h20v-2c0-3.3-6.7-5-10-5zm2-7h3V5h-3V2h-2v3H9v2h3v3h2V7z"/></svg>
+        </div>
+        <div class="pillar-name verde">Criterio 2</div>
+        <div class="pillar-title">Docencia</div>
+        <div class="pillar-desc">Fortalecimiento de competencias pedagógicas, desde la evaluación integral hasta el desarrollo de habilidades blandas en el aula de enfermería.</div>
+        <div class="pillar-count"><span>4 módulos</span> · Evaluación · Tutorías · Habilidades</div>
+      </div>
+      <div class="pillar-card soporte">
+        <div class="pillar-icon dorado">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.08 8.75-7 9.93C8.08 19.75 5 15.52 5 11V6.3l7-3.12z"/></svg>
+        </div>
+        <div class="pillar-name dorado">Criterio 3</div>
+        <div class="pillar-title">Funciones estratégicas y de soporte</div>
+        <div class="pillar-desc">Sensibilización en ética, transparencia e integridad académica como fundamentos del ejercicio docente responsable en el contexto universitario.</div>
+        <div class="pillar-count"><span>1 módulo</span> · Ética · Transparencia · Integridad</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section class="section modulos-bg" id="modulos">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Plan de formación</div>
+      <h2 class="section-title">Módulos de capacitación</h2>
+      <p class="section-sub">Cada módulo responde a necesidades identificadas por Aseguramiento de la Calidad y está diseñado conforme a los estándares del CACES.</p>
+    </div>
+    <div class="modulos-grid">
+
+      <!-- M1 -->
+      <div class="modulo-card">
+        <div class="modulo-num m1">
+          <span class="num-big">01</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Currículo · Syllabus</div>
+          <div class="modulo-nombre">Gestión y seguimiento del Syllabus</div>
+          <div class="modulo-desc">Capacitación en lineamientos, instrumentos y procesos de seguimiento del syllabus para docentes y responsables académicos, con énfasis en la coherencia curricular del programa de enfermería.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-azul">Lineamientos</span>
+            <span class="tag tag-azul">Instrumentos</span>
+            <span class="tag tag-azul">Seguimiento</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M2 -->
+      <div class="modulo-card">
+        <div class="modulo-num m2">
+          <span class="num-big">02</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Currículo · Prácticas Formativas</div>
+          <div class="modulo-nombre">Escenarios de prácticas formativas</div>
+          <div class="modulo-desc">Seguimiento, evaluación y documentación de prácticas formativas mediante rúbricas, fichas e informes. Incluye el curso virtual a ritmo propio de la DDA (Dirección de Desarrollo Académico).</div>
+          <div class="modulo-tags">
+            <span class="tag tag-verde">Rúbricas</span>
+            <span class="tag tag-verde">Fichas</span>
+            <span class="tag tag-verde">Informes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M3 -->
+      <div class="modulo-card">
+        <div class="modulo-num m3">
+          <span class="num-big">03</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Currículo · TAC</div>
+          <div class="modulo-nombre">Tecnologías para el Aprendizaje y Conocimiento (TAC)</div>
+          <div class="modulo-desc">Uso pedagógico de tecnologías TAC y su aplicación en el aula de enfermería. Capacitación semestral coordinada con la Ing. Cabascango, con énfasis en innovación educativa.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-morado">Innovación</span>
+            <span class="tag tag-morado">Aula digital</span>
+            <span class="tag tag-morado">Semestral</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M4 -->
+      <div class="modulo-card">
+        <div class="modulo-num m4">
+          <span class="num-big">04</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Docencia · Evaluación</div>
+          <div class="modulo-nombre">Evaluación integral docente</div>
+          <div class="modulo-desc">Análisis de resultados de evaluación docente y planes de retroalimentación personalizados. Capacitación basada en los indicadores CACES de calidad de la práctica pedagógica.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-dorado">Retroalimentación</span>
+            <span class="tag tag-dorado">Resultados</span>
+            <span class="tag tag-dorado">Mejora continua</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M5 -->
+      <div class="modulo-card">
+        <div class="modulo-num m5">
+          <span class="num-big">05</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Docencia · Tutorías</div>
+          <div class="modulo-nombre">Sistema de tutorías académicas</div>
+          <div class="modulo-desc">Planificación, ejecución, seguimiento y evaluación de tutorías académicas en la carrera de enfermería, conforme al sistema institucional de acompañamiento estudiantil.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-azul">Planificación</span>
+            <span class="tag tag-azul">Acompañamiento</span>
+            <span class="tag tag-azul">Seguimiento</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M6 -->
+      <div class="modulo-card">
+        <div class="modulo-num m6">
+          <span class="num-big">06</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Docencia · Habilidades Blandas</div>
+          <div class="modulo-nombre">Habilidades blandas en la formación de enfermería</div>
+          <div class="modulo-desc">Integración curricular de metodologías activas y evaluación de habilidades blandas. Coordinado con la Dirección de Bienestar Universitario para un enfoque integral del perfil docente.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-verde">Metodologías activas</span>
+            <span class="tag tag-verde">Bienestar</span>
+            <span class="tag tag-verde">Competencias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M7 -->
+      <div class="modulo-card">
+        <div class="modulo-num m7">
+          <span class="num-big">07</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Docencia · Resultados de Aprendizaje</div>
+          <div class="modulo-nombre">Seguimiento a resultados de aprendizaje</div>
+          <div class="modulo-desc">Diseño de sistemas de seguimiento, evaluación por competencias y análisis de resultados de aprendizaje en el contexto de la formación clínica y comunitaria de enfermería.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-azul">Evaluación por competencias</span>
+            <span class="tag tag-azul">Análisis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- M8 -->
+      <div class="modulo-card">
+        <div class="modulo-num m8">
+          <span class="num-big">08</span>
+          <span class="num-label">Módulo</span>
+        </div>
+        <div class="modulo-body">
+          <div class="modulo-pilar">Funciones Estratégicas · Ética</div>
+          <div class="modulo-nombre">Ética, transparencia e integridad académica</div>
+          <div class="modulo-desc">Sensibilización y capacitación en principios éticos, transparencia institucional e integridad en el ejercicio de la función docente, alineados a los valores de la UCE y los estándares CACES.</div>
+          <div class="modulo-tags">
+            <span class="tag tag-dorado">Ética</span>
+            <span class="tag tag-dorado">Transparencia</span>
+            <span class="tag tag-dorado">Valores UCE</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="section" id="metodologia">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Proceso formativo</div>
+      <h2 class="section-title">Metodología del programa</h2>
+      <p class="section-sub">Un proceso estructurado para garantizar el aprendizaje significativo y la aplicación práctica en el aula.</p>
+    </div>
+    <div class="metodologia-grid">
+      <div class="metodologia-steps">
+        <div class="step">
+          <div class="step-left"><div class="step-circle">1</div></div>
+          <div class="step-content">
+            <div class="step-title">Diagnóstico de necesidades</div>
+            <div class="step-desc">Identificación de brechas formativas mediante los reportes de Aseguramiento de la Calidad y los resultados de evaluación docente del semestre anterior.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-circle">2</div></div>
+          <div class="step-content">
+            <div class="step-title">Planificación y diseño instruccional</div>
+            <div class="step-desc">Diseño de contenidos alineados a los indicadores CACES, con objetivos de aprendizaje claros, recursos didácticos y criterios de evaluación definidos.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-circle">3</div></div>
+          <div class="step-content">
+            <div class="step-title">Ejecución del módulo</div>
+            <div class="step-desc">Modalidad mixta: sesiones presenciales, cursos virtuales a ritmo propio (DDA) y talleres prácticos. Participación activa mediante metodologías constructivistas.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-circle">4</div></div>
+          <div class="step-content">
+            <div class="step-title">Evaluación y certificación</div>
+            <div class="step-desc">Valoración del aprendizaje y aplicación práctica. Emisión de certificados institucionales avalados por la FCM–UCE para cada módulo completado.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left"><div class="step-circle">5</div></div>
+          <div class="step-content">
+            <div class="step-title">Seguimiento y mejora continua</div>
+            <div class="step-desc">Monitoreo de la implementación de los aprendizajes en la práctica docente y ajuste semestral del programa en función de los resultados obtenidos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metodologia-visual">
+        <div class="mv-title">Modalidades de capacitación</div>
+        <div class="mv-items">
+          <div class="mv-item">
+            <div class="mv-icon verde">
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+            </div>
+            <div class="mv-text"><strong>Curso virtual DDA</strong> — a ritmo propio con la Dirección de Desarrollo Académico</div>
+          </div>
+          <div class="mv-item">
+            <div class="mv-icon azul">
+              <svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+            </div>
+            <div class="mv-text"><strong>Talleres presenciales</strong> — sesiones prácticas en las instalaciones de la FCM</div>
+          </div>
+          <div class="mv-item">
+            <div class="mv-icon dorado">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+            </div>
+            <div class="mv-text"><strong>Coordinación Ing. Cabascango</strong> — TAC cada semestre con acompañamiento técnico</div>
+          </div>
+          <div class="mv-item">
+            <div class="mv-icon morado">
+              <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div class="mv-text"><strong>Dirección de Bienestar</strong> — módulo de habilidades blandas en coordinación conjunta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCO CACES -->
+<section class="caces-section" id="caces">
+  <div class="caces-inner">
+    <div class="caces-grid">
+      <div class="caces-left">
+        <div class="section-tag">Marco institucional</div>
+        <h2 class="section-title">Alineación con los lineamientos CACES</h2>
+        <p class="section-sub">Este programa responde directamente a los criterios de evaluación del Consejo de Aseguramiento de la Calidad de la Educación Superior (CACES), garantizando pertinencia y rigor académico.</p>
+        <div class="criterios-list">
+          <div class="criterio-item">
+            <div class="criterio-dot"></div>
+            <div class="criterio-text">
+              <strong>Criterio: Currículo</strong>
+              Gestión del syllabus, prácticas formativas y uso de tecnologías TAC como componentes evaluables del diseño curricular de la carrera.
+            </div>
+          </div>
+          <div class="criterio-item">
+            <div class="criterio-dot" style="background: #7ab8f0;"></div>
+            <div class="criterio-text">
+              <strong>Criterio: Docencia</strong>
+              Evaluación integral, sistema de tutorías, habilidades blandas y seguimiento a resultados de aprendizaje como indicadores de calidad docente.
+            </div>
+          </div>
+          <div class="criterio-item">
+            <div class="criterio-dot" style="background: #e6a835;"></div>
+            <div class="criterio-text">
+              <strong>Criterio: Funciones estratégicas y de soporte</strong>
+              Ética, transparencia e integridad como ejes transversales del ejercicio docente responsable en la educación superior.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="caces-right">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem;">Indicadores del programa</p>
+        <div class="indicadores-grid">
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+            <div class="ind-name">Syllabus</div>
+            <div class="ind-desc">Lineamientos y seguimiento curricular</div>
+          </div>
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18V15c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.82L21 9 12 3zm6 8.99L12 15 6 11.99V11l6 3.27 6-3.27v.99zM12 5.44L18.25 9 12 12.56 5.75 9 12 5.44z"/></svg></div>
+            <div class="ind-name">Prácticas formativas</div>
+            <div class="ind-desc">Evaluación y documentación</div>
+          </div>
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3z"/></svg></div>
+            <div class="ind-name">Evaluación docente</div>
+            <div class="ind-desc">Retroalimentación y mejora</div>
+          </div>
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+            <div class="ind-name">Tutorías académicas</div>
+            <div class="ind-desc">Sistema de acompañamiento</div>
+          </div>
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"/></svg></div>
+            <div class="ind-name">Resultados de aprendizaje</div>
+            <div class="ind-desc">Seguimiento y análisis</div>
+          </div>
+          <div class="indicador-card">
+            <div class="ind-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
+            <div class="ind-name">Ética académica</div>
+            <div class="ind-desc">Integridad e transparencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Educación Continua – Carrera de Enfermería</div>
+        <div class="footer-brand-desc">Facultad de Ciencias Médicas · Universidad Central del Ecuador. Programa de capacitación docente alineado a los estándares CACES.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Programa</div>
+        <ul class="footer-links">
+          <li><a href="#pilares">Pilares CACES</a></li>
+          <li><a href="#modulos">Módulos de capacitación</a></li>
+          <li><a href="#metodologia">Metodología</a></li>
+          <li><a href="#caces">Marco institucional</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Institución</div>
+        <ul class="footer-links">
+          <li><a href="#">Universidad Central del Ecuador</a></li>
+          <li><a href="#">Facultad de Ciencias Médicas</a></li>
+          <li><a href="#">Carrera de Enfermería</a></li>
+          <li><a href="#">Dirección de Desarrollo Académico</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Universidad Central del Ecuador · Facultad de Ciencias Médicas</div>
+      <div class="footer-badge">Lineamientos CACES 2025</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pillar-card, .modulo-card, .step, .indicador-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
